@@ -1,0 +1,318 @@
+/*%FSM<COMPILE "C:\Program Files (x86)\Steam\steamapps\common\Arma 3 Tools\FSMEditor\scriptedFSM.cfg, missionFlow">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"MissionFlow",0,250,-57.512039,-193.646179,40.795670,-140.323105,0.000000,"MissionFlow"};
+item1[] = {"Server",4,218,-53.424271,-104.047234,36.575714,-54.047226,0.000000,"Server"};
+item2[] = {"Client",4,218,82.184448,-192.269424,172.184448,-142.269424,1.000000,"Client"};
+item3[] = {"Ensure_Death",2,250,398.098541,303.905670,488.097778,353.905609,0.000000,"Ensure Death"};
+item4[] = {"Mission_start",2,4346,-53.482491,-2.517731,36.517540,47.482269,0.000000,"Mission start"};
+item5[] = {"Incapacitated",4,218,266.510162,303.680756,356.510162,353.680695,0.000000,"Incapacitated"};
+item6[] = {"Debug_End",4,218,264.288239,218.577301,354.288239,268.577271,0.000000,"Debug End"};
+item7[] = {"Terminate",1,250,82.288406,-107.258331,172.288437,-57.258347,0.000000,"Terminate"};
+item8[] = {"Temp_1",4,218,267.516235,499.793427,357.516235,549.793396,0.000000,"Temp"};
+item9[] = {"",7,210,158.039795,239.710175,166.039825,247.710205,0.000000,""};
+item10[] = {"_",4,218,577.783691,303.789948,667.783691,353.789886,0.000000,""};
+item11[] = {"End_Mission",1,250,577.883789,218.763397,667.883789,268.763367,0.000000,"End Mission"};
+item12[] = {"",7,210,157.867249,324.614410,165.867249,332.614410,0.000000,""};
+item13[] = {"_",4,218,-53.543991,93.454926,36.455994,143.454926,0.000000,""};
+item14[] = {"Ongoing",2,250,-53.414063,218.731400,36.585953,268.731384,0.000000,"Ongoing"};
+item15[] = {"Mission_Endings",-1,26,252.732056,160.217453,664.348633,193.383026,0.000000,"Mission Endings"};
+item16[] = {"Temp",4,218,267.552979,406.209808,357.552979,456.209808,0.000000,"Temp"};
+item17[] = {"",7,210,157.882538,427.102692,165.882538,435.102661,0.000000,""};
+item18[] = {"Dummy_",2,250,577.322937,406.317200,667.322937,456.317200,0.000000,"Dummy" \n ""};
+item19[] = {"",7,210,157.845779,520.686340,165.845779,528.686279,0.000000,""};
+item20[] = {"",7,210,618.472107,520.681091,626.472107,528.681091,0.000000,""};
+item21[] = {"",7,210,-12.557663,340.927063,-4.557663,348.927063,0.000000,""};
+item22[] = {"Temp_2",4,218,-287.662628,319.808075,-197.662659,369.808075,0.000000,"Temp"};
+item23[] = {"",7,210,-497.240967,340.805725,-489.240936,348.805725,0.000000,""};
+item24[] = {"_",4,218,-538.223633,218.606796,-448.223724,268.606812,0.000000,""};
+item25[] = {"Temp",2,250,-433.744843,319.636993,-343.744843,369.636993,0.000000,"Temp"};
+item26[] = {"Mission_Status_C",-1,26,-549.440308,153.841476,-187.819580,188.106003,0.000000,"Mission Status Changes"};
+version=1;
+class LayoutItems
+{
+	class Item15
+	{
+		class ItemInfo
+		{
+			FontFace="Arial";
+			FontHeight=10;
+			FontWeight=700;
+		};
+		BgColor=128;
+	};
+	class Item26
+	{
+		class ItemInfo
+		{
+			FontFace="Arial";
+			FontHeight=10;
+			FontWeight=700;
+		};
+		BgColor=32768;
+	};
+};
+link0[] = {0,1};
+link1[] = {0,2};
+link2[] = {1,4};
+link3[] = {2,7};
+link4[] = {3,10};
+link5[] = {4,13};
+link6[] = {5,3};
+link7[] = {6,11};
+link8[] = {8,20};
+link9[] = {9,6};
+link10[] = {9,12};
+link11[] = {10,11};
+link12[] = {12,5};
+link13[] = {12,17};
+link14[] = {13,14};
+link15[] = {14,9};
+link16[] = {14,21};
+link17[] = {16,18};
+link18[] = {17,16};
+link19[] = {17,19};
+link20[] = {18,10};
+link21[] = {19,8};
+link22[] = {20,18};
+link23[] = {21,22};
+link24[] = {22,25};
+link25[] = {23,24};
+link26[] = {24,14};
+link27[] = {25,23};
+globals[] = {0.000000,0,0,0,0,640,480,1,38,6316128,1,-1056.074219,1168.949951,905.620789,-286.165436,1249,669,1};
+window[] = {0,-1,-1,-1,-1,1039,-5,1926,1,1,687};
+*//*%FSM</HEAD>*/
+class FSM
+{
+        fsmName = "missionFlow";
+        class States
+        {
+                /*%FSM<STATE "MissionFlow">*/
+                class MissionFlow
+                {
+                        name = "MissionFlow";
+                        itemno = 0;
+                        init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Client">*/
+                                class Client
+                                {
+                                        itemno = 2;
+                                        priority = 1.000000;
+                                        to="Terminate";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"!isServer"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Server">*/
+                                class Server
+                                {
+                                        itemno = 1;
+                                        priority = 0.000000;
+                                        to="Mission_start";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Ensure_Death">*/
+                class Ensure_Death
+                {
+                        name = "Ensure_Death";
+                        itemno = 3;
+                        init = /*%FSM<STATEINIT""">*/"{ _x setDamage 1 } forEach allPlayers;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "_">*/
+                                class _
+                                {
+                                        itemno = 10;
+                                        priority = 0.000000;
+                                        to="End_Mission";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Mission_start">*/
+                class Mission_start
+                {
+                        name = "Mission_start";
+                        itemno = 4;
+                        init = /*%FSM<STATEINIT""">*/"private _missionStatus = ""Started"";" \n
+                         "private _missionSuccess = false;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "_">*/
+                                class _
+                                {
+                                        itemno = 13;
+                                        priority = 0.000000;
+                                        to="Ongoing";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"isServer"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Terminate">*/
+                class Terminate
+                {
+                        name = "Terminate";
+                        itemno = 7;
+                        init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "End_Mission">*/
+                class End_Mission
+                {
+                        name = "End_Mission";
+                        itemno = 11;
+                        init = /*%FSM<STATEINIT""">*/"[_missionStatus, _missionSuccess] remoteExecCall [""ARTR_fnc_clientEnding"",0,false];" \n
+                         ""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Ongoing">*/
+                class Ongoing
+                {
+                        name = "Ongoing";
+                        itemno = 14;
+                        init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "Incapacitated">*/
+                                class Incapacitated
+                                {
+                                        itemno = 5;
+                                        priority = 0.000000;
+                                        to="Ensure_Death";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"""DebugParam"" call BIS_fnc_getParamValue == 0 && { (lifeState _x != ""HEALTHY"") || (lifeState _x != ""INJURED"")  } count allPlayers == 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Temp">*/
+                                class Temp
+                                {
+                                        itemno = 16;
+                                        priority = 0.000000;
+                                        to="Dummy_";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"false"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Temp_1">*/
+                                class Temp_1
+                                {
+                                        itemno = 8;
+                                        priority = 0.000000;
+                                        to="Dummy_";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"false"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Temp_2">*/
+                                class Temp_2
+                                {
+                                        itemno = 22;
+                                        priority = 0.000000;
+                                        to="Temp";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"false"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Debug_End">*/
+                                class Debug_End
+                                {
+                                        itemno = 6;
+                                        priority = 0.000000;
+                                        to="End_Mission";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"""DebugParam"" call BIS_fnc_getParamValue >= 0 && missionNamespace getVariable [""ARTR_forceEnd"", false]"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Dummy_">*/
+                class Dummy_
+                {
+                        name = "Dummy_";
+                        itemno = 18;
+                        init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "_">*/
+                                class _
+                                {
+                                        itemno = 10;
+                                        priority = 0.000000;
+                                        to="End_Mission";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "Temp">*/
+                class Temp
+                {
+                        name = "Temp";
+                        itemno = 25;
+                        init = /*%FSM<STATEINIT""">*/"//Set condition-variable to false so condition is not checked"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "_">*/
+                                class _
+                                {
+                                        itemno = 24;
+                                        priority = 0.000000;
+                                        to="Ongoing";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"isServer"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+        };
+        initState="MissionFlow";
+        finalStates[] =
+        {
+                "Terminate",
+                "End_Mission",
+        };
+};
+/*%FSM</COMPILE>*/

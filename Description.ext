@@ -1,0 +1,181 @@
+//Enable debug console for the admin
+enableDebugConsole = 1;
+
+class Params
+{
+	class DebugParam {
+		title = "Debug mode";
+		values[] = {0,1,2};
+		texts[] = {"OFF", "TEST", "FULL"};
+		default = 0;
+	};
+};
+
+//Mission ending states, used via BIS_fnc_endMission from end.sqf
+class CfgDebriefing
+{
+	class Started
+	{
+		title = "Mission Failed";
+		subtitle = "You didn't even try??";
+		description = "Scrub";
+		picture = "\A3\ui_f\data\map\mapcontrol\taskIconFailed_ca.paa";
+		pictureColor[] = {1.0,0.3,0.2,1.0};
+	};
+
+	class Win
+	{
+		title = "Mission Successful";
+		subtitle = "Yay you";
+		picture = "\A3\ui_f\data\map\mapcontrol\taskIconDone_ca.paa";
+		picturecolor[] = {0.0,0.3,0.6,1};
+	};
+
+	class Dead
+	{
+		title = "You are dead";
+		subtitle = "Mission over";
+		picture = "KIA";
+		pictureColor[] = {0.6,0.1,0.2,1};
+	};
+};
+
+//Functions, used to define preSet.sqf as "preInit". You can also make your own functions, but that's generally not needed.
+//More information on defining your own functions: https://community.bistudio.com/wiki/Functions_Library_%28Arma_3%29#Adding_a_Function
+class CfgFunctions
+{
+	class ARTR
+	{
+        class briefing
+        {
+            class initBriefing {};
+			class briefingPage {};
+			class briefingFile {};
+        };
+
+		class missionFlow
+		{
+			class clientEnding {};
+		};
+
+		class utility
+		{
+			class emptyTrigger {};
+		};
+	};
+};
+
+class CfgRemoteExec
+{
+	// List of script functions allowed to be sent from client via remoteExec
+	class Functions
+	{
+	       mode = 2;					//0: off, 1: on with whitelist, 2: on ignoring whitelist
+	       jip = 1;		 				// Ability to send JIP messages: 0-disabled, 1-enabled (default)
+
+	       class clientEnding
+	       {
+	              allowedTargets=0; 	// 0: can target anyone, 1: only clients, 2: only server
+	              jip = 1; 				// JIP setting override
+	       };
+	};
+
+	// List of script commands allowed to be sent from client via remoteExec
+	class Commands
+	{
+		class reveal { allowedTargets=0; jip=0; };
+	};
+};
+
+//Notifications (the popups you get when completing a task and so on), can be used via BIS_fnc_showNotification
+class CfgNotifications
+{
+
+	class TaskAssigned
+	{
+		title = "$STR_A3_CfgNotifications_TaskAssigned_0";
+		iconPicture = "\A3\ui_f\data\map\mapcontrol\taskIcon_ca.paa";
+		description = "%1";
+		priority = 5;
+		sound = "taskAssigned";
+	};
+	class TaskCreated: TaskAssigned
+	{
+		title = "$STR_A3_CfgNotifications_TaskCreated_0";
+		iconPicture = "\A3\ui_f\data\map\mapcontrol\taskIconCreated_ca.paa";
+		description = "%1";
+		priority = 5;
+		sound = "taskCreated";
+	};
+	class TaskSucceeded: TaskAssigned
+	{
+		title = "$STR_A3_CfgNotifications_TaskSucceeded_0";
+		iconPicture = "\A3\ui_f\data\map\mapcontrol\taskIconDone_ca.paa";
+		description = "%1";
+		priority = 6;
+		color[] = {0.7,1.0,0.3,1.0};
+		sound = "taskSucceeded";
+	};
+	class TaskFailed: TaskAssigned
+	{
+		title = "$STR_A3_CfgNotifications_TaskFailed_0";
+		iconPicture = "\A3\ui_f\data\map\mapcontrol\taskIconFailed_ca.paa";
+		description = "%1";
+		priority = 6;
+		color[] = {1.0,0.3,0.2,1.0};
+		sound = "taskFailed";
+	};
+	class TaskCanceled: TaskAssigned
+	{
+		title = "$STR_A3_CfgNotifications_TaskCanceled_0";
+		iconPicture = "\A3\ui_f\data\map\mapcontrol\taskIconCanceled_ca.paa";
+		description = "%1";
+		priority = 6;
+		color[] = {0.7,0.7,0.7,1.0};
+		sound = "taskCanceled";
+	};
+	class TaskUpdated: TaskAssigned
+	{
+		title = "$STR_A3_CfgNotifications_TaskUpdated_0";
+		description = "%1";
+		priority = 4;
+		sound = "taskUpdated";
+	};
+};
+
+//Default respawn options
+respawn = "BASE";
+respawnDelay = 5;
+respawnDialog = 0;
+respawnOnStart = 0;
+respawnTemplates[] = {"Tickets","Spectator"};
+respawnButton = 0;
+
+//Revive options
+ReviveMode = 1;                         //0: disabled, 1: enabled, 2: attribute-defined
+ReviveUnconsciousStateMode = 0;         //0: basic, 1: advanced, 2: realistic
+ReviveRequiredTrait = 0;                //0: none, 1: medic trait is required
+ReviveRequiredItems = 2;                //0: none, 1: medkit, 2: medkit or first aid kit
+ReviveRequiredItemsFakConsumed = 1;     //0: FAK not consumed, 1: FAK consumed
+ReviveDelay = 6;                        //time needed to revive someone (in secs)
+ReviveMedicSpeedMultiplier = 2;         //speed multiplier for revive performed by medic
+ReviveForceRespawnDelay = 3;            //time needed to perform force respawn (in secs)
+ReviveBleedOutDelay = 300;              //unconscious state duration (in secs)
+
+class CfgAISkills
+{
+	aimingAccuracy[] = {1, 1, 1, 1};
+	aimingShake[] = {1, 1, 1, 1};
+	aimingSpeed[] = {1, 1, 1, 1};
+	commanding[] = {1, 1, 1, 1};
+	courage[] = {1, 1, 1, 1};
+	endurance[] = {1, 1, 1, 1};
+	general[] = {1, 1, 1, 1};
+	reloadSpeed[] = {1, 1, 1, 1};
+	spotDistance[] = {1, 1, 1, 1};
+	spotTime[] = {1, 1, 1, 1};
+};
+
+
+//CBA Settings setup
+//cba_settings_hasSettingsFile = 1;
