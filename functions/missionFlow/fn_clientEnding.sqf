@@ -8,7 +8,8 @@ and fancyVisuals a boolean that says whether to go straight to the
 debriefing or to use the cool new ingame ending graphic*/
 
 params [
-	["ending", "isVictory"]
+	["_ending", "Started", [""]], 
+	["_isVictory", false, [true]]
 ];
 
 if (alive player) then

@@ -15,14 +15,11 @@ params [
 
 private _filePath = "files\briefing\" + _name + ".txt";
 
-private _formatParams = "[LoadFile _filePath";
-{
-	_formatParams = format ['%1, "%2"', _formatParams, _x];
-} forEach _optionals;
-_formatParams = _formatParams + "]";
-
-if (!(player diarySubjectExists _subject)) then
+if ( !(player diarySubjectExists _subject) ) then
 {
 	player createDiarySubject [_subject, _subject];
 };
-player createDiaryRecord [_subject, [_name, format (call compile _formatParams)]];
+
+private _construct = [LoadFile _filePath];
+{ _construct pushBack _x } forEach _optionals;
+player createDiaryRecord [_subject, [_name, format _construct]];

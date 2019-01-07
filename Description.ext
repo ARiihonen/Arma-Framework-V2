@@ -1,5 +1,5 @@
 //Enable debug console for the admin
-enableDebugConsole = 1;
+enableDebugConsole[] = { 76561197996589753 };
 
 class Params
 {
@@ -48,14 +48,33 @@ class CfgFunctions
 	{
         class briefing
         {
-            class initBriefing {};
-			class briefingPage {};
 			class briefingFile {};
+			class briefingPage {};
+            class initBriefing { postInit = 1; };
         };
+
+		class gear
+		{
+			class initGear { postInit = 1; };
+			class setGear {};
+			class switchItem {};
+		};
 
 		class missionFlow
 		{
 			class clientEnding {};
+		};
+
+		class mods
+		{
+			class checkMod {};
+			class initMods { preInit = 1; };
+		};
+
+		class Revive
+		{
+			class initReviveTimer;
+			class initTickets { postInit = 1; };
 		};
 
 		class utility

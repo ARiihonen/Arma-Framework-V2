@@ -7,11 +7,6 @@ Parameters:
 		1: List of optional parameters to format the txt. (ARRAY)
 		2: DiarySubject (defined elsewhere). (STRING - default: "Diary")
 */
-
-params [
-	["_customPages",[],[[]]]
-];
-
 private _addedPages = [];
 private _defaultPages = [
 	"Intel",
@@ -20,7 +15,7 @@ private _defaultPages = [
 	"Background"
 ];
 
-if (count _customPages > 0) then
+if (count _this > 0) then
 {
 	{
 		_x params [
@@ -30,8 +25,8 @@ if (count _customPages > 0) then
 		];
 
 		_addedPages pushBackUnique _name;
-		_x call ARTR_fnc_briefingPage;
-	} forEach _customPages;
+		[_name,_optionals,_subject] call ARTR_fnc_briefingPage;
+	} forEach _this;
 };
 
 {
